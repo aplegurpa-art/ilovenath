@@ -1,0 +1,214 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background:
+    radial-gradient(circle at top left, #ffe6f0 0%, transparent 25%),
+    radial-gradient(circle at bottom right, #f9d7e8 0%, transparent 20%),
+    linear-gradient(180deg, #f9d7e8 0%, #f7c2db 100%);
+  color: #4a1633;
+}
+
+.page {
+  min-height: 100vh;
+  padding: 40px 20px 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 0 0 30px;
+  line-height: 1.2;
+  color: #7d234e;
+  text-shadow: 2px 2px 0 rgba(255,255,255,0.4);
+}
+
+.card-board {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  position: relative;
+  min-height: 0;
+  padding: 10px 10px 60px;
+}
+
+.card {
+  position: absolute;
+  width: 170px;
+  min-height: 108px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 12px 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(160, 60, 110, 0.14);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  overflow: hidden;
+}
+
+.card:nth-child(3n) {
+  background: #fff2f7;
+}
+
+.card:nth-child(3n + 1) {
+  background: #ffe7f0;
+}
+
+.card:nth-child(3n + 2) {
+  background: #fffafc;
+}
+
+.card:hover {
+  transform: translateY(-4px) rotate(0deg);
+  box-shadow: 0 14px 26px rgba(160, 60, 110, 0.18);
+}
+
+.flower {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin: 8px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.petal {
+  position: absolute;
+  width: 26px;
+  height: 34px;
+  background: #ff8bb8;
+  border-radius: 60% 60% 50% 50%;
+  box-shadow: inset -2px -4px 0 rgba(255,255,255,0.2);
+}
+
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-18px); }
+.petal:nth-child(2) { transform: rotate(90deg) translateY(-18px); }
+.petal:nth-child(3) { transform: rotate(180deg) translateY(-18px); }
+.petal:nth-child(4) { transform: rotate(270deg) translateY(-18px); }
+
+.center {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffd166;
+  box-shadow: 0 0 0 3px #ffc857;
+}
+
+.hidden-text {
+  display: none;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #5b2040;
+  font-weight: 700;
+}
+
+.card.open {
+  background: #fff7fb;
+  border-color: #f3bfd3;
+}
+
+.card.open .flower {
+  display: none;
+}
+
+.card.open .hidden-text {
+  display: block;
+}
+
+.final-heart {
+  position: relative;
+  width: min(680px, 92vw);
+  min-height: 390px;
+  margin: 120px auto 0;
+  padding: 34px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 30px rgba(160, 60, 110, 0.18);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.final-heart:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 36px rgba(160, 60, 110, 0.24);
+}
+
+.heart-shape {
+  position: absolute;
+  width: 170px;
+  height: 150px;
+  background: linear-gradient(135deg, #ff7aa8, #ff4d8d);
+  clip-path: polygon(50% 100%, 8% 53%, 8% 30%, 20% 12%, 38% 8%, 50% 22%, 62% 8%, 80% 12%, 92% 30%, 92% 53%);
+  filter: drop-shadow(0 12px 12px rgba(179, 51, 104, 0.22));
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.hidden-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 24px;
+  padding: 32px 38px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.93rem;
+  line-height: 1.7;
+  text-shadow: 0 2px 5px rgba(35, 8, 30, 0.9);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.final-heart.open .hidden-message {
+  opacity: 1;
+}
+
+.final-heart.open .heart-shape {
+  opacity: 0.1;
+}
+
+.final-heart.open {
+  background: #3a153c;
+}
+
+.final-heart.open::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  background:
+    linear-gradient(rgba(25, 8, 35, 0.52), rgba(25, 8, 35, 0.52)),
+    url("couple.jpg") center / cover;
+  filter: blur(4px);
+  transform: scale(1.03);
+  z-index: 0;
+}
+
+@media (max-width: 700px) {
+  .card-board {
+    min-height: 0;
+  }
+
+  .card {
+    width: 150px;
+  }
+
+  .final-heart {
+    transform: scale(0.82);
+  }
+}
